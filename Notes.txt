@@ -1,0 +1,6 @@
+Create Virtual Env
+python -m venv ./venv
+
+Activate Virtual env
+Windows :  env_path\Scripts\activate
+Linux : source  env_path\Scripts\activate
