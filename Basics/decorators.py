@@ -83,3 +83,40 @@ def function2(x,y):
 
 function1()
 print("Result of function2 = ", function2(10,20))
+
+# --------------------------------------------------------------------------------
+# decorator chaining
+
+def squareFunc(func):
+    print("squareFunc")
+    def wrapper(*arg, **karg):
+        x = func(*arg, **karg)
+        ret = x * x
+        return ret
+    return wrapper
+
+def doubleFunc(func):
+    print("doubleFunc")
+    def wrapper(*arg, **karg):
+        x = func(*arg, **karg)
+        ret = 2 * x
+        return ret
+    return wrapper
+
+print("Chaining Decorator : squareFunc, doubleFunc")
+@squareFunc     # called 2nd
+@doubleFunc     # called 1st
+def Testfunction1(val):
+    print("Testfunction1 : ", val)
+    return val
+
+print("squareFunc, doubleFunc : ", Testfunction1(10))
+
+print("Chaining Decorator : doubleFunc, squareFunc")
+@doubleFunc # called 2nd
+@squareFunc # called 1st
+def Testfunction2(val):
+    print("Testfunction2 : ", val)
+    return val
+
+print("squareFunc, doubleFunc : ", Testfunction2(10))
